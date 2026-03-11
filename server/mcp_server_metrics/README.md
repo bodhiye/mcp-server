@@ -418,37 +418,15 @@ API Key ([Signature Mechanism](https://www.volcengine.com/docs/6731/942192))
 
 ### Environment Variables
 
-| Environment Variable Name | Description | Default Value | Acquisition Method |
-| --- | --- | --- | --- |
-| VOLCENGINE_ACCESS_KEY | Volcengine Account ACCESS KEY | - | [Volcengine Access Console](https://console.volcengine.com/iam/keymanage/) |
-| VOLCENGINE_SECRET_KEY | Volcengine Account SECRET KEY | - | [Volcengine Access Console](https://console.volcengine.com/iam/keymanage/) |
-| VOLCENGINE_REGION | Volcengine Region | cn-beijing | - |
+| Environment Variable Name | Description                   | Default Value | Acquisition Method                                                      |
+| ------------------------- | ----------------------------- | ------------- | ----------------------------------------------------------------------- |
+| VOLCENGINE_ACCESS_KEY     | Volcengine Account ACCESS KEY | -             | [Volcengine Access Console](https://console.volcengine.com/iam/keymanage/) |
+| VOLCENGINE_SECRET_KEY     | Volcengine Account SECRET KEY | -             | [Volcengine Access Console](https://console.volcengine.com/iam/keymanage/) |
+| VOLCENGINE_REGION         | Volcengine Region             | cn-beijing    | -                                                                       |
 
 ### Deployment
 
-UV
-
-```json
-{
-  "mcpServers": {
-    "mcp_server_metrics": {
-      "command": "uv",
-      "env": {
-        "VOLCENGINE_ACCESS_KEY":"Your Volcengine access key",
-        "VOLCENGINE_SECRET_KEY":"Your Volcengine secret key"
-      },
-      "args": [
-        "--directory",
-        "/<your local path to mcp-servers>/server/mcp_server_metrics",
-        "run",
-        "mcp-server-metrics"
-      ]
-    }
-  }
-}
-```
-
-UVX
+Add the following configuration to your mcp settings file
 
 ```json
 {
