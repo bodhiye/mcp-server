@@ -426,29 +426,7 @@ API Key ([签名机制](https://www.volcengine.com/docs/6731/942192))
 
 ### 部署
 
-UV
-
-```json
-{
-  "mcpServers": {
-    "mcp_server_metrics": {
-      "command": "uv",
-      "env": {
-        "VOLCENGINE_ACCESS_KEY":"Your Volcengine access key",
-        "VOLCENGINE_SECRET_KEY":"Your Volcengine secret key"
-      },
-      "args": [
-        "--directory",
-        "/<your local path to mcp-servers>/server/mcp_server_metrics",
-        "run",
-        "mcp-server-metrics"
-      ]
-    }
-  }
-}
-```
-
-UVX
+添加以下配置到你的 mcp settings 文件中
 
 ```json
 {
