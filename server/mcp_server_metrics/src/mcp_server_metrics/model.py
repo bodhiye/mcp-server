@@ -12,7 +12,6 @@ class ListWorkspaceRequest:
     Filters only support filtering by "Name" parameter for workspace names.
     """
 
-    region: str = "cn-beijing"
     PageNumber: int = 1
     PageSize: int = 10
     Filters: Optional[Dict[str, str]] = None
@@ -25,14 +24,12 @@ class GetWorkspaceInfoRequest:
     """Request for getting workspace information."""
 
     WorkspaceID: str
-    region: str = "cn-beijing"
 
 
 @dataclass
 class ListQueryClustersRequest:
     """Request for listing query clusters."""
 
-    region: str = "cn-beijing"
     PageNumber: int = 1
     PageSize: int = 10
     Name: str = ""
@@ -44,7 +41,6 @@ class GetQueryClusterRequest:
     """Request for getting query cluster information."""
 
     ClusterID: str
-    region: str = "cn-beijing"
 
 
 @dataclass
@@ -52,7 +48,6 @@ class ListPreaggRequest:
     """Request for listing preaggregation rules."""
 
     WorkspaceName: str
-    region: str = "cn-beijing"
     PageNumber: int = 1
     PageSize: int = 10
     onlyShowMine: bool = True
@@ -64,7 +59,6 @@ class InfluxQueryRequest:
 
     Workspace: str
     Queries: List[str]
-    region: str = "cn-beijing"
     Epoch: Optional[str] = None
 
 
@@ -76,7 +70,6 @@ class MetricsQueryRequest:
     Queries: List[Dict[str, Any]]
     Start: str
     End: str
-    region: str = "cn-beijing"
 
 
 # Response models

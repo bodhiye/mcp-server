@@ -29,7 +29,7 @@
 
 #### 详细描述
 
-查询当前账户下指定地域的所有工作区列表。
+查询当前账户下的所有工作区列表。
 
 #### 调试所需的输入参数:
 
@@ -38,15 +38,10 @@
 ```json
 {
     "name": "metrics_list_workspace",
-    "description": "查询在指定地域下的所有Metrics工作区实例信息",
+    "description": "查询所有的Metrics工作区实例信息",
     "inputSchema": {
         "type": "object",
         "properties": {
-            "region": {
-                "default": "cn-beijing",
-                "description": "目标地域(e.g. cn-beijing, cn-shanghai, cn-guangzhou)",
-                "type": "string"
-            },
             "page_number": {
                 "default": 1,
                 "description": "分页页码",
@@ -62,9 +57,7 @@
                 "type": "string"
             }
         },
-        "required": [
-	    "region"
-	]
+        "required": []
     }
 }
 ```
@@ -75,13 +68,13 @@
 
 #### 最容易被唤起的 Prompt示例
 
-请列出在 cn-beijing 地域下的所有工作区实例信息。
+请列出所有的 Metrics 工作区实例信息。
 
 ### Tool 2: metrics_get_workspace_info
 
 #### 详细描述
 
-查询当前账户下指定地域的指定工作区详情信息。
+查询当前账户下的指定工作区详情信息。
 
 #### 调试所需的输入参数:
 
@@ -94,18 +87,12 @@
     "inputSchema": {
         "type": "object",
         "properties": {
-            "region": {
-                "default": "cn-beijing",
-                "description": "目标地域(e.g. cn-beijing, cn-shanghai, cn-guangzhou)",
-                "type": "string"
-            },
             "workspace_id": {
                 "description": "工作区 ID",
                 "type": "string"
             }
         },
         "required": [
-            "region",
             "workspace_id"
         ]
     }
@@ -118,13 +105,13 @@
 
 #### 最容易被唤起的 Prompt示例
 
-请获取在 cn-beijing 地域下工作区 ID 为 "test-workspace-id" 的工作区信息。
+请获取工作区 ID 为 "test-workspace-id" 的工作区信息。
 
 ### Tool 3: metrics_list_query_clusters
 
 #### 详细描述
 
-查询当前账户下指定地域的所有查询集群列表。
+查询当前账户下的所有查询集群列表。
 
 #### 调试所需的输入参数:
 
@@ -133,15 +120,10 @@
 ```json
 {
     "name": "metrics_list_query_clusters",
-    "description": "查询当前账户下指定地域的所有查询集群列表",
+    "description": "查询当前账户下的所有查询集群列表",
     "inputSchema": {
         "type": "object",
         "properties": {
-            "region": {
-                "default": "cn-beijing",
-                "description": "目标地域(e.g. cn-beijing, cn-shanghai, cn-guangzhou)",
-                "type": "string"
-            },
             "page_number": {
                 "default": 1,
                 "description": "分页页码",
@@ -157,9 +139,7 @@
                 "type": "string"
             }
         },
-        "required": [
-            "region"
-        ]
+        "required": []
     }
 }
 ```
@@ -170,13 +150,13 @@
 
 #### 最容易被唤起的 Prompt示例
 
-请列出在 cn-beijing 地域下的所有查询集群。
+请列出所有的查询集群。
 
 ### Tool 4: metrics_get_query_cluster
 
 #### 详细描述
 
-查询当前账户下指定地域的指定查询集群详情信息。
+查询当前账户下的指定查询集群详情信息。
 
 #### 调试所需的输入参数:
 
@@ -185,22 +165,16 @@
 ```json
 {
     "name": "metrics_get_query_cluster",
-    "description": "查询当前账户下指定地域的指定查询集群详情信息",
+    "description": "查询当前账户下的指定查询集群详情信息",
     "inputSchema": {
         "type": "object",
         "properties": {
-            "region": {
-                "default": "cn-beijing",
-                "description": "目标地域(e.g. cn-beijing, cn-shanghai, cn-guangzhou)",
-                "type": "string"
-            },
             "cluster_id": {
                 "description": "查询集群 ID",
                 "type": "string"
             }
         },
         "required": [
-            "region",
             "cluster_id"
         ]
     }
@@ -213,13 +187,13 @@
 
 #### 最容易被唤起的 Prompt示例
 
-请获取在 cn-beijing 地域下查询集群 ID 为 "test-cluster-id" 的查询集群信息。
+请获取查询集群 ID 为 "test-cluster-id" 的查询集群信息。
 
 ### Tool 5: metrics_list_preagg
 
 #### 详细描述
 
-查询当前账户下指定地域指定工作区下的所有预聚合规则列表。。
+查询当前账户下指定工作区下的所有预聚合规则列表。。
 
 #### 调试所需的输入参数:
 
@@ -228,15 +202,10 @@
 ```json
 {
     "name": "metrics_list_preagg",
-    "description": "查询当前账户下指定地域指定工作区下的所有预聚合规则列表",
+    "description": "查询当前账户下指定工作区下的所有预聚合规则列表",
     "inputSchema": {
         "type": "object",
         "properties": {
-            "region": {
-                "default": "cn-beijing",
-                "description": "目标地域(e.g. cn-beijing, cn-shanghai, cn-guangzhou)",
-                "type": "string"
-            },
             "workspace_name": {
                 "description": "工作区名称",
                 "type": "string"
@@ -258,7 +227,6 @@
             }
         },
         "required": [
-            "region",
             "workspace_name"
         ]
     }
@@ -271,13 +239,13 @@
 
 #### 最容易被唤起的 Prompt示例
 
-请获取在 cn-beijing 地域下工作区名为 "test_workspace_name" 中的所有预聚合规则。
+请获取工作区名为 "test_workspace_name" 下的所有预聚合规则。
 
 ### Tool 6: metrics_influx_query
 
 #### 详细描述
 
-从当前账户指定地域指定工作区中，查询 InfluxDB 指标数据。
+从当前账户指定工作区中查询 InfluxDB 指标数据。
 
 #### 调试所需的输入参数:
 
@@ -286,15 +254,10 @@
 ```json
 {
     "name": "metrics_influx_query",
-    "description": "从当前账户指定地域指定工作区中，查询 InfluxDB 指标数据",
+    "description": "从当前账户指定工作区中查询 InfluxDB 指标数据",
     "inputSchema": {
         "type": "object",
         "properties": {
-            "region": {
-                "default": "cn-beijing",
-                "description": "目标地域(e.g. cn-beijing, cn-shanghai, cn-guangzhou)",
-                "type": "string"
-            },
             "workspace": {
                 "description": "工作区名称",
                 "type": "string"
@@ -310,7 +273,6 @@
             }
         },
         "required": [
-            "region",
             "workspace",
             "queries"
         ]
@@ -324,13 +286,13 @@
 
 #### 最容易被唤起的 Prompt示例
 
-请在 cn-beijing 地域下工作区名为 "test_workspace_name" 中使用 InfluxQL 查询过去三十分钟的 CPU 使用率。
+请在工作区名为 "test_workspace_name" 中使用 InfluxQL 查询过去三十分钟的 CPU 使用率。
 
 ### Tool 7: metrics_query
 
 #### 详细描述
 
-从当前账户指定地域指定工作区中，查询 Metrics/OpenTSDB 指标数据。从指标服务查询指标数据。
+从当前账户指定工作区中查询指标数据。
 
 #### 调试所需的输入参数:
 
@@ -339,15 +301,10 @@
 ```json
 {
     "name": "metrics_query",
-    "description": "从当前账户指定地域指定工作区中，查询 Metrics/OpenTSDB 指标数据",
+    "description": "从当前账户指定工作区中查询指标数据",
     "inputSchema": {
         "type": "object",
         "properties": {
-            "region": {
-                "default": "cn-beijing",
-                "description": "目标地域(e.g. cn-beijing, cn-shanghai, cn-guangzhou)",
-                "type": "string"
-            },
             "workspace": {
                 "description": "工作区名称",
                 "type": "string"
@@ -369,7 +326,6 @@
             }
         },
         "required": [
-            "region",
             "workspace",
             "queries"
         ]
@@ -383,7 +339,7 @@
 
 #### 最容易被唤起的 Prompt示例
 
-请在 cn-beijing 地域下工作区名为 "test_workspace_name" 中使用 Metrics/OpenTSDB 协议查询过去三十分钟的 CPU 使用率。
+请在工作区名为 "test_workspace_name" 中查询过去三十分钟的 CPU 使用率。
 
 ## 可适配平台
 
@@ -418,11 +374,12 @@ API Key ([签名机制](https://www.volcengine.com/docs/6731/942192))
 
 ### 环境变量
 
-| 环境变量名            | 描述                    | 默认值     | 获取方式                                                         |
-| --------------------- | ----------------------- | ---------- | ---------------------------------------------------------------- |
-| VOLCENGINE_ACCESS_KEY | 火山引擎账号 ACCESS KEY | -          | [火山引擎访问控制台](https://console.volcengine.com/iam/keymanage/) |
-| VOLCENGINE_SECRET_KEY | 火山引擎账号 SECRET KEY | -          | [火山引擎访问控制台](https://console.volcengine.com/iam/keymanage/) |
-| VOLCENGINE_REGION     | 火山引擎 地域           | cn-beijing | -                                                                |
+| 环境变量名             | 描述                    | 默认值 | 获取方式                                                                                                                |
+| ---------------------- | ----------------------- | ------ | ----------------------------------------------------------------------------------------------------------------------- |
+| VOLCENGINE_ACCESS_KEY  | 火山引擎账号 ACCESS KEY | -      | [火山引擎访问控制台](https://console.volcengine.com/iam/keymanage/)                                                        |
+| VOLCENGINE_SECRET_KEY  | 火山引擎账号 SECRET KEY | -      | [火山引擎访问控制台](https://console.volcengine.com/iam/keymanage/)                                                        |
+| VOLCENGINE_REGION      | 火山引擎 地域           | -      | [火山引擎访问控制台](https://console.volcengine.com/iam/keymanage/)，目标地域(例如 cn-beijing, cn-shanghai, cn-guangzhou) |
+| METRICS_WORKSPACE_NAME | 默认工作区名称          | -      | 可选，用于 list_preagg、influx_query、metrics_query 方法的默认工作区                                                    |
 
 ### 部署
 
@@ -435,7 +392,9 @@ API Key ([签名机制](https://www.volcengine.com/docs/6731/942192))
       "command": "uvx",
       "env": {
         "VOLCENGINE_ACCESS_KEY":"Your Volcengine access key",
-        "VOLCENGINE_SECRET_KEY":"Your Volcengine secret key"
+        "VOLCENGINE_SECRET_KEY":"Your Volcengine secret key",
+        "VOLCENGINE_REGION":"Volcengine region",
+        "METRICS_WORKSPACE_NAME":"your-workspace-name"
       },
       "args": [
         "--from",

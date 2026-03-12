@@ -29,7 +29,7 @@ This MCP Server product provides the following Tools (functions/capabilities):
 
 #### Detailed Description
 
-Query all workspace instances information under the current account in the specified region.
+Query all workspace instances information under the current account.
 
 #### Input parameters required for debugging:
 
@@ -38,15 +38,10 @@ Input:
 ```json
 {
     "name": "metrics_list_workspace",
-    "description": "Query all Metrics workspace instances information in the specified region",
+    "description": "Query all Metrics workspace instances information",
     "inputSchema": {
         "type": "object",
         "properties": {
-            "region": {
-                "default": "cn-beijing",
-                "description": "Target region(e.g. cn-beijing, cn-shanghai, cn-guangzhou)",
-                "type": "string"
-            },
             "page_number": {
                 "default": 1,
                 "description": "Page number for pagination",
@@ -62,9 +57,7 @@ Input:
                 "type": "string"
             }
         },
-        "required": [
-	    "region"
-	]
+        "required": []
     }
 }
 ```
@@ -75,13 +68,13 @@ Output:
 
 #### Example Prompt most likely to trigger
 
-Please list all workspace instances information in the cn-beijing region.
+Please list all Metrics workspace instances information.
 
 ### Tool 2: metrics_get_workspace_info
 
 #### Detailed Description
 
-Query details of a specific workspace under the current account in the specified region.
+Query details of a specific workspace under the current account.
 
 #### Input parameters required for debugging:
 
@@ -90,22 +83,16 @@ Input:
 ```json
 {
     "name": "metrics_get_workspace_info",
-    "description": "Query details of a specific workspace in the specified region",
+    "description": "Query details of a specific workspace",
     "inputSchema": {
         "type": "object",
         "properties": {
-            "region": {
-                "default": "cn-beijing",
-                "description": "Target region(e.g. cn-beijing, cn-shanghai, cn-guangzhou)",
-                "type": "string"
-            },
             "workspace_id": {
                 "description": "Workspace ID",
                 "type": "string"
             }
         },
         "required": [
-            "region",
             "workspace_id"
         ]
     }
@@ -118,13 +105,13 @@ Output:
 
 #### Example Prompt most likely to trigger
 
-Please get workspace information with ID "test-workspace-id" in the cn-beijing region.
+Please get workspace information with ID "test-workspace-id".
 
 ### Tool 3: metrics_list_query_clusters
 
 #### Detailed Description
 
-Query all query clusters information under the current account in the specified region.
+Query all query clusters information under the current account.
 
 #### Input parameters required for debugging:
 
@@ -133,15 +120,10 @@ Input:
 ```json
 {
     "name": "metrics_list_query_clusters",
-    "description": "Query all query clusters information under the current account in the specified region",
+    "description": "Query all query clusters information under the current account",
     "inputSchema": {
         "type": "object",
         "properties": {
-            "region": {
-                "default": "cn-beijing",
-                "description": "Target region(e.g. cn-beijing, cn-shanghai, cn-guangzhou)",
-                "type": "string"
-            },
             "page_number": {
                 "default": 1,
                 "description": "Page number for pagination",
@@ -157,9 +139,7 @@ Input:
                 "type": "string"
             }
         },
-        "required": [
-            "region"
-        ]
+        "required": []
     }
 }
 ```
@@ -170,13 +150,13 @@ Output:
 
 #### Example Prompt most likely to trigger
 
-Please list all query clusters in the cn-beijing region.
+Please list all query clusters.
 
 ### Tool 4: metrics_get_query_cluster
 
 #### Detailed Description
 
-Query details of a specific query cluster under the current account in the specified region.
+Query details of a specific query cluster under the current account.
 
 #### Input parameters required for debugging:
 
@@ -185,22 +165,16 @@ Input:
 ```json
 {
     "name": "metrics_get_query_cluster",
-    "description": "Query details of a specific query cluster in the specified region",
+    "description": "Query details of a specific query cluster",
     "inputSchema": {
         "type": "object",
         "properties": {
-            "region": {
-                "default": "cn-beijing",
-                "description": "Target region(e.g. cn-beijing, cn-shanghai, cn-guangzhou)",
-                "type": "string"
-            },
             "cluster_id": {
                 "description": "Query cluster ID",
                 "type": "string"
             }
         },
         "required": [
-            "region",
             "cluster_id"
         ]
     }
@@ -213,13 +187,13 @@ Output:
 
 #### Example Prompt most likely to trigger
 
-Please get query cluster information with ID "test-cluster-id" in the cn-beijing region.
+Please get query cluster information with ID "test-cluster-id".
 
 ### Tool 5: metrics_list_preagg
 
 #### Detailed Description
 
-Query all preaggregation rules in the specified workspace under the current account in the specified region.
+Query all preaggregation rules in the specified workspace under the current account.
 
 #### Input parameters required for debugging:
 
@@ -228,15 +202,10 @@ Input:
 ```json
 {
     "name": "metrics_list_preagg",
-    "description": "Query all preaggregation rules in the specified workspace under the current account in the specified region",
+    "description": "Query all preaggregation rules in the specified workspace under the current account",
     "inputSchema": {
         "type": "object",
         "properties": {
-            "region": {
-                "default": "cn-beijing",
-                "description": "Target region(e.g. cn-beijing, cn-shanghai, cn-guangzhou)",
-                "type": "string"
-            },
             "workspace_name": {
                 "description": "Workspace name",
                 "type": "string"
@@ -258,7 +227,6 @@ Input:
             }
         },
         "required": [
-            "region",
             "workspace_name"
         ]
     }
@@ -271,13 +239,13 @@ Output:
 
 #### Example Prompt most likely to trigger
 
-Please get all preaggregation rules in workspace named "test_workspace_name" in the cn-beijing region.
+Please get all preaggregation rules in workspace named "test_workspace_name".
 
 ### Tool 6: metrics_influx_query
 
 #### Detailed Description
 
-Query InfluxDB metrics data from the specified workspace under the current account in the specified region.
+Query InfluxDB metrics data from the specified workspace under the current account.
 
 #### Input parameters required for debugging:
 
@@ -286,15 +254,10 @@ Input:
 ```json
 {
     "name": "metrics_influx_query",
-    "description": "Query InfluxDB metrics data from the specified workspace under the current account in the specified region",
+    "description": "Query InfluxDB metrics data from the specified workspace under the current account",
     "inputSchema": {
         "type": "object",
         "properties": {
-            "region": {
-                "default": "cn-beijing",
-                "description": "Target region(e.g. cn-beijing, cn-shanghai, cn-guangzhou)",
-                "type": "string"
-            },
             "workspace": {
                 "description": "Workspace name",
                 "type": "string"
@@ -310,7 +273,6 @@ Input:
             }
         },
         "required": [
-            "region",
             "workspace",
             "queries"
         ]
@@ -324,13 +286,13 @@ Output:
 
 #### Example Prompt most likely to trigger
 
-Please query CPU usage in the last 30 minutes using InfluxQL in workspace named "test_workspace_name" in the cn-beijing region.
+Please query CPU usage in the last 30 minutes using InfluxQL in workspace named "test_workspace_name".
 
 ### Tool 7: metrics_query
 
 #### Detailed Description
 
-Query Metrics/OpenTSDB metrics data from the specified workspace under the current account in the specified region.
+Query metrics data from the specified workspace under the current account.
 
 #### Input parameters required for debugging:
 
@@ -339,15 +301,10 @@ Input:
 ```json
 {
     "name": "metrics_query",
-    "description": "Query Metrics/OpenTSDB metrics data from the specified workspace under the current account in the specified region",
+    "description": "Query metrics data from the specified workspace under the current account",
     "inputSchema": {
         "type": "object",
         "properties": {
-            "region": {
-                "default": "cn-beijing",
-                "description": "Target region(e.g. cn-beijing, cn-shanghai, cn-guangzhou)",
-                "type": "string"
-            },
             "workspace": {
                 "description": "Workspace name",
                 "type": "string"
@@ -369,7 +326,6 @@ Input:
             }
         },
         "required": [
-            "region",
             "workspace",
             "queries"
         ]
@@ -383,7 +339,7 @@ Output:
 
 #### Example Prompt most likely to trigger
 
-Please query CPU usage metrics in the last 30 minutes using Metrics/OpenTSDB protocol in workspace named "test_workspace_name" in the cn-beijing region.
+Please query CPU usage metrics in the last 30 minutes in workspace named "test_workspace_name".
 
 ## Compatible Platforms
 
@@ -422,7 +378,8 @@ API Key ([Signature Mechanism](https://www.volcengine.com/docs/6731/942192))
 | ------------------------- | ----------------------------- | ------------- | ----------------------------------------------------------------------- |
 | VOLCENGINE_ACCESS_KEY     | Volcengine Account ACCESS KEY | -             | [Volcengine Access Console](https://console.volcengine.com/iam/keymanage/) |
 | VOLCENGINE_SECRET_KEY     | Volcengine Account SECRET KEY | -             | [Volcengine Access Console](https://console.volcengine.com/iam/keymanage/) |
-| VOLCENGINE_REGION         | Volcengine Region             | cn-beijing    | -                                                                       |
+| VOLCENGINE_REGION         | Volcengine Region             | -             | [Volcengine Access Console](https://console.volcengine.com/iam/keymanage/) Target region(e.g. cn-beijing, cn-shanghai, cn-guangzhou) |
+| METRICS_WORKSPACE_NAME    | Default Workspace Name        | -             | Optional, used as default workspace for list_preagg, influx_query, metrics_query methods |
 
 ### Deployment
 
@@ -435,7 +392,9 @@ Add the following configuration to your mcp settings file
       "command": "uvx",
       "env": {
         "VOLCENGINE_ACCESS_KEY":"Your Volcengine access key",
-        "VOLCENGINE_SECRET_KEY":"Your Volcengine secret key"
+        "VOLCENGINE_SECRET_KEY":"Your Volcengine secret key",
+        "VOLCENGINE_REGION":"Volcengine region",
+        "METRICS_WORKSPACE_NAME":"your-workspace-name"
       },
       "args": [
         "--from",

@@ -70,7 +70,6 @@ def init_auth_config() -> MetricsConfig:
 
 @mcp.tool()
 async def list_workspace(
-    region: str = "cn-beijing",
     PageNumber: int = 1,
     PageSize: int = 10,
     Name: str = "",
@@ -81,7 +80,6 @@ async def list_workspace(
     List workspaces from the metrics console.
 
     Args:
-        region: Target region (e.g. cn-beijing, cn-shanghai, cn-guangzhou, default: cn-beijing)
         PageNumber: Page number for pagination (default: 1)
         PageSize: Page size for pagination (default: 10)
         Filters: Filters to apply (optional, Filters only support filtering by "Name" parameter for workspace names.)
@@ -98,7 +96,6 @@ async def list_workspace(
             raise ValueError("PageSize must be between 1 and 100")
 
         req = ListWorkspaceRequest(
-            region=region,
             PageNumber=PageNumber,
             PageSize=PageSize,
             Filters={"Name": Name} if Name else None,
@@ -120,14 +117,12 @@ async def list_workspace(
 @mcp.tool()
 async def get_workspace(
     WorkspaceID: str,
-    region: str = "cn-beijing",
 ):
     """
     Get workspace information from the metrics console.
 
     Args:
         WorkspaceID: Workspace ID
-        region: Target region (e.g. cn-beijing, cn-shanghai, cn-guangzhou, default: cn-beijing)
 
     Returns:
         Workspace information
@@ -135,7 +130,6 @@ async def get_workspace(
     try:
         req = GetWorkspaceInfoRequest(
             WorkspaceID=WorkspaceID,
-            region=region,
         )
 
         config = init_auth_config()
@@ -148,7 +142,6 @@ async def get_workspace(
 
 @mcp.tool()
 async def list_query_clusters(
-    region: str = "cn-beijing",
     PageNumber: int = 1,
     PageSize: int = 10,
     Name: str = "",
@@ -158,7 +151,6 @@ async def list_query_clusters(
     List query clusters from the metrics console.
 
     Args:
-        region: Target region (e.g. cn-beijing, cn-shanghai, cn-guangzhou, default: cn-beijing)
         PageNumber: Page number for pagination (default: 1)
         PageSize: Page size for pagination (default: 10)
         Name: Cluster name to filter (optional)
@@ -172,9 +164,8 @@ async def list_query_clusters(
             raise ValueError("PageNumber must be at least 1")
         if PageSize < 1 or PageSize > 100:
             raise ValueError("PageSize must be between 1 and 100")
-        
+
         req = ListQueryClustersRequest(
-            region=region,
             PageNumber=PageNumber,
             PageSize=PageSize,
             Name=Name,
@@ -192,14 +183,12 @@ async def list_query_clusters(
 @mcp.tool()
 async def get_query_cluster(
     ClusterID: str,
-    region: str = "cn-beijing",
 ):
     """
     Get query cluster information from the metrics console.
 
     Args:
         ClusterID: Query cluster ID
-        region: Target region (e.g. cn-beijing, cn-shanghai, cn-guangzhou, default: cn-beijing)
 
     Returns:
         Query cluster information
@@ -207,7 +196,6 @@ async def get_query_cluster(
     try:
         req = GetQueryClusterRequest(
             ClusterID=ClusterID,
-            region=region,
         )
 
         config = init_auth_config()
@@ -220,8 +208,7 @@ async def get_query_cluster(
 
 @mcp.tool()
 async def list_preagg(
-    WorkspaceName: str,
-    region: str = "cn-beijing",
+    WorkspaceName: str = "",
     PageNumber: int = 1,
     PageSize: int = 10,
     onlyShowMine: bool = True,
@@ -230,8 +217,7 @@ async def list_preagg(
     List preaggregation rules from the metrics console.
 
     Args:
-        WorkspaceName: Workspace name to filter (required)
-        region: Target region (e.g. cn-beijing, cn-shanghai, cn-guangzhou, default: cn-beijing)
+        WorkspaceName: Workspace name to filter (required, defaults to METRICS_WORKSPACE_NAME environment variable if not provided)
         PageNumber: Page number for pagination (default: 1)
         PageSize: Page size for pagination (default: 10)
         onlyShowMine: Whether to only show rules created by current user (default: True)
@@ -240,23 +226,24 @@ async def list_preagg(
         List of preaggregation rules with metadata
     """
     try:
-        # 参数验证
         if PageNumber < 1:
             raise ValueError("PageNumber must be at least 1")
         if PageSize < 1 or PageSize > 100:
             raise ValueError("PageSize must be between 1 and 100")
-        if not WorkspaceName:
-            raise ValueError("WorkspaceName is required")
+
+        config = init_auth_config()
+        
+        final_workspace_name = WorkspaceName or config.workspace_name
+        if not final_workspace_name:
+            raise ValueError("WorkspaceName is required. Please provide it as a parameter or set METRICS_WORKSPACE_NAME environment variable")
 
         req = ListPreaggRequest(
-            WorkspaceName=WorkspaceName,
-            region=region,
+            WorkspaceName=final_workspace_name,
             PageNumber=PageNumber,
             PageSize=PageSize,
             onlyShowMine=onlyShowMine,
         )
 
-        config = init_auth_config()
         api = MetricsApi(config)
         return api.list_preagg(req)
     except Exception as e:
@@ -266,32 +253,34 @@ async def list_preagg(
 
 @mcp.tool()
 async def influx_query(
-    Workspace: str,
     Queries: List[str],
-    region: str = "cn-beijing",
+    Workspace: str = "",
     Epoch: Optional[str] = None,
 ):
     """
     InfluxDB query from cross cluster proxy.
 
     Args:
-        Workspace: Workspace name
         Queries: List of InfluxQL query strings
-        region: Target region (e.g. cn-beijing, cn-shanghai, cn-guangzhou, default: cn-beijing)
+        Workspace: Workspace name (defaults to METRICS_WORKSPACE_NAME environment variable if not provided)
         Epoch: Time stamp precision (s/ms/us/ns, optional)
 
     Returns:
         Query results
     """
     try:
+        config = init_auth_config()
+        
+        final_workspace = Workspace or config.workspace_name
+        if not final_workspace:
+            raise ValueError("Workspace is required. Please provide it as a parameter or set METRICS_WORKSPACE_NAME environment variable")
+
         req = InfluxQueryRequest(
-            Workspace=Workspace,
+            Workspace=final_workspace,
             Queries=Queries,
-            region=region,
             Epoch=Epoch,
         )
 
-        config = init_auth_config()
         api = MetricsApi(config)
         return api.influx_query(req)
     except Exception as e:
@@ -301,9 +290,8 @@ async def influx_query(
 
 @mcp.tool()
 async def metrics_query(
-    Workspace: str,
     Queries: List[Dict[str, Any]],
-    region: str = "cn-beijing",
+    Workspace: str = "",
     Start: str = "10m-ago",
     End: str= "now",
 ):
@@ -311,9 +299,8 @@ async def metrics_query(
     Query metrics data from cross cluster proxy.
 
     Args:
-        Workspace: Workspace name
         Queries: List of query objects with metric details
-        region: Target region (e.g. cn-beijing, cn-shanghai, cn-guangzhou, default: cn-beijing)
+        Workspace: Workspace name (defaults to METRICS_WORKSPACE_NAME environment variable if not provided)
         Start: Start time in seconds (timestamp string)
         End: End time in seconds (timestamp string)
 
@@ -321,15 +308,19 @@ async def metrics_query(
         Metrics query results
     """
     try:
+        config = init_auth_config()
+        
+        final_workspace = Workspace or config.workspace_name
+        if not final_workspace:
+            raise ValueError("Workspace is required. Please provide it as a parameter or set METRICS_WORKSPACE_NAME environment variable")
+
         req = MetricsQueryRequest(
-            Workspace=Workspace,
+            Workspace=final_workspace,
             Queries=Queries,
             Start=Start,
             End=End,
-            region=region,
         )
 
-        config = init_auth_config()
         api = MetricsApi(config)
         return api.metrics_query(req)
     except Exception as e:
