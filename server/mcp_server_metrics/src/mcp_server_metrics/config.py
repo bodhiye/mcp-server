@@ -38,6 +38,7 @@ class MetricsConfig:
     secret_key: str
     session_token: str
     region: str
+    endpoint: str
     workspace_name: str
 
     def is_valid(self) -> bool:
