@@ -47,6 +47,10 @@ class MetricsConfig:
             return False
         return True
 
+    def get_endpoint(self, region: str) -> str:
+        """Get endpoint based on region."""
+        return f"https://metrics.{region}.volcengineapi.com"
+
     def append_authorization(
         self, path, method, headers, body, post_params, query, region, service
     ):

@@ -52,7 +52,8 @@ class MetricsApi:
             METRICS_SERVICE_NAME,
         )
 
-        url = f"{self.config.endpoint}"
+        # Get endpoint based on target region
+        url = self.config.get_endpoint(target_region)
 
         logger.debug(f"Making {method} request to {url} with params={params}")
 
@@ -102,7 +103,7 @@ class MetricsApi:
         }
      
         logger.debug(f"Calling list_workspaces with params: {params}, data: {data}")
-        response = self._make_request("POST", params=params, data=data)
+        response = self._make_request("POST", params=params, data=data, region=request.Region)
         return ListWorkspaceResponse(**response)
 
     def get_workspace_info(self, request: GetWorkspaceInfoRequest) -> GetWorkspaceInfoResponse:
@@ -117,7 +118,7 @@ class MetricsApi:
         }
 
         logger.debug(f"Calling get_workspace_info with params: {params}, data: {data}")
-        response = self._make_request("POST", params=params, data=data)
+        response = self._make_request("POST", params=params, data=data, region=request.Region)
         return GetWorkspaceInfoResponse(**response)
 
     def list_query_clusters(self, request: ListQueryClustersRequest) -> ListQueryClustersResponse:
@@ -137,7 +138,7 @@ class MetricsApi:
         }
 
         logger.debug(f"Calling list_query_clusters with params: {params}, data: {data}")
-        response = self._make_request("POST", params=params, data=data)
+        response = self._make_request("POST", params=params, data=data, region=request.Region)
         return ListQueryClustersResponse(**response)
 
     def get_query_cluster(self, request: GetQueryClusterRequest) -> GetQueryClusterResponse:
@@ -152,7 +153,7 @@ class MetricsApi:
         }
 
         logger.debug(f"Calling get_query_cluster with params: {params}, data: {data}")
-        response = self._make_request("POST", params=params, data=data)
+        response = self._make_request("POST", params=params, data=data, region=request.Region)
         return GetQueryClusterResponse(**response)
 
     def list_preagg(self, request: ListPreaggRequest) -> ListPreaggResponse:
@@ -172,7 +173,7 @@ class MetricsApi:
             data["Filters"] = {"WorkspaceName": request.WorkspaceName}
 
         logger.debug(f"Calling list_preagg with params: {params}, data: {data}")
-        response = self._make_request("POST", params=params, data=data)
+        response = self._make_request("POST", params=params, data=data, region=request.Region)
         return ListPreaggResponse(**response)
 
     def influx_query(self, request: InfluxQueryRequest) -> InfluxQueryResponse:
@@ -191,7 +192,7 @@ class MetricsApi:
             data["Epoch"] = request.Epoch
 
         logger.debug(f"Calling influx_query with params: {params}, data: {data}")
-        response = self._make_request("POST", params=params, data=data)
+        response = self._make_request("POST", params=params, data=data, region=request.Region)
         return InfluxQueryResponse(**response)
 
     def metrics_query(self, request: MetricsQueryRequest) -> MetricsQueryResponse:
@@ -209,5 +210,5 @@ class MetricsApi:
         }
 
         logger.debug(f"Calling metrics_query with params: {params}, data: {data}")
-        response = self._make_request("POST", params=params, data=data)
+        response = self._make_request("POST", params=params, data=data, region=request.Region)
         return MetricsQueryResponse(**response)

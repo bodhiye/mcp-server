@@ -55,6 +55,11 @@
             "name": {
                 "description": "工作区名称，用于过滤",
                 "type": "string"
+            },
+            "region": {
+                "default": "cn-beijing",
+                "description": "火山引擎地域（例如：cn-beijing, cn-shanghai, cn-guangzhou）",
+                "type": "string"
             }
         },
         "required": []
@@ -89,6 +94,11 @@
         "properties": {
             "workspace_id": {
                 "description": "工作区 ID",
+                "type": "string"
+            },
+            "region": {
+                "default": "cn-beijing",
+                "description": "火山引擎地域（例如：cn-beijing, cn-shanghai, cn-guangzhou）",
                 "type": "string"
             }
         },
@@ -137,6 +147,11 @@
             "name": {
                 "description": "查询集群名称，用于过滤",
                 "type": "string"
+            },
+            "region": {
+                "default": "cn-beijing",
+                "description": "火山引擎地域（例如：cn-beijing, cn-shanghai, cn-guangzhou）",
+                "type": "string"
             }
         },
         "required": []
@@ -171,6 +186,11 @@
         "properties": {
             "cluster_id": {
                 "description": "查询集群 ID",
+                "type": "string"
+            },
+            "region": {
+                "default": "cn-beijing",
+                "description": "火山引擎地域（例如：cn-beijing, cn-shanghai, cn-guangzhou）",
                 "type": "string"
             }
         },
@@ -224,6 +244,11 @@
                 "default": true,
                 "description": "是否只显示当前用户创建的规则",
                 "type": "boolean"
+            },
+            "region": {
+                "default": "cn-beijing",
+                "description": "火山引擎地域（例如：cn-beijing, cn-shanghai, cn-guangzhou）",
+                "type": "string"
             }
         },
         "required": [
@@ -269,6 +294,11 @@
             },
             "epoch": {
                 "description": "时间戳精度 (s/ms/us/ns)",
+                "type": "string"
+            },
+            "region": {
+                "default": "cn-beijing",
+                "description": "火山引擎地域（例如：cn-beijing, cn-shanghai, cn-guangzhou）",
                 "type": "string"
             }
         },
@@ -323,6 +353,11 @@
                 "default": "now",
                 "description": "查询结束时间",
                 "type": "string"
+            },
+            "region": {
+                "default": "cn-beijing",
+                "description": "火山引擎地域（例如：cn-beijing, cn-shanghai, cn-guangzhou）",
+                "type": "string"
             }
         },
         "required": [
@@ -374,12 +409,12 @@ API Key ([签名机制](https://www.volcengine.com/docs/6731/942192))
 
 ### 环境变量
 
-| 环境变量名             | 描述                    | 默认值 | 获取方式                                                                                                                |
-| ---------------------- | ----------------------- | ------ | ----------------------------------------------------------------------------------------------------------------------- |
-| VOLCENGINE_ACCESS_KEY  | 火山引擎账号 ACCESS KEY | -      | [火山引擎访问控制台](https://console.volcengine.com/iam/keymanage/)                                                        |
-| VOLCENGINE_SECRET_KEY  | 火山引擎账号 SECRET KEY | -      | [火山引擎访问控制台](https://console.volcengine.com/iam/keymanage/)                                                        |
-| VOLCENGINE_REGION      | 火山引擎 地域           | -      | [火山引擎访问控制台](https://console.volcengine.com/iam/keymanage/)，目标地域(例如 cn-beijing, cn-shanghai, cn-guangzhou) |
-| METRICS_WORKSPACE_NAME | 默认工作区名称          | -      | 可选，用于 list_preagg、influx_query、metrics_query 方法的默认工作区                                                    |
+| 环境变量名             | 描述                    | 默认值     | 获取方式                                                         |
+| ---------------------- | ----------------------- | ---------- | ---------------------------------------------------------------- |
+| VOLCENGINE_ACCESS_KEY  | 火山引擎账号 ACCESS KEY | -          | [火山引擎访问控制台](https://console.volcengine.com/iam/keymanage/) |
+| VOLCENGINE_SECRET_KEY  | 火山引擎账号 SECRET KEY | -          | [火山引擎访问控制台](https://console.volcengine.com/iam/keymanage/) |
+| VOLCENGINE_REGION      | 火山引擎 地域           | cn-beijing | 目标地域(例如 cn-beijing, cn-shanghai, cn-guangzhou)            |
+| METRICS_WORKSPACE_NAME | 默认工作区名称          | -          | 可选，用于指标查询方法的默认工作区                               |
 
 ### 部署
 

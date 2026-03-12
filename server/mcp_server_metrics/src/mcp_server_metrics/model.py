@@ -17,6 +17,7 @@ class ListWorkspaceRequest:
     Filters: Optional[Dict[str, str]] = None
     ProjectName: str = "default"
     ListGlobal: bool = False
+    Region: Optional[str] = None
 
 
 @dataclass
@@ -24,6 +25,7 @@ class GetWorkspaceInfoRequest:
     """Request for getting workspace information."""
 
     WorkspaceID: str
+    Region: Optional[str] = None
 
 
 @dataclass
@@ -34,6 +36,7 @@ class ListQueryClustersRequest:
     PageSize: int = 10
     Name: str = ""
     ProjectName: str = "default"
+    Region: Optional[str] = None
 
 
 @dataclass
@@ -41,6 +44,7 @@ class GetQueryClusterRequest:
     """Request for getting query cluster information."""
 
     ClusterID: str
+    Region: Optional[str] = None
 
 
 @dataclass
@@ -51,6 +55,7 @@ class ListPreaggRequest:
     PageNumber: int = 1
     PageSize: int = 10
     onlyShowMine: bool = True
+    Region: Optional[str] = None
 
 
 @dataclass
@@ -60,6 +65,7 @@ class InfluxQueryRequest:
     Workspace: str
     Queries: List[str]
     Epoch: Optional[str] = None
+    Region: Optional[str] = None
 
 
 @dataclass
@@ -70,6 +76,7 @@ class MetricsQueryRequest:
     Queries: List[Dict[str, Any]]
     Start: str
     End: str
+    Region: Optional[str] = None
 
 
 # Response models

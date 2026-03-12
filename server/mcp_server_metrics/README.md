@@ -55,6 +55,11 @@ Input:
             "name": {
                 "description": "Workspace name for filtering",
                 "type": "string"
+            },
+            "region": {
+                "default": "cn-beijing",
+                "description": "Volcengine region (e.g., cn-beijing, cn-shanghai, cn-guangzhou)",
+                "type": "string"
             }
         },
         "required": []
@@ -89,6 +94,11 @@ Input:
         "properties": {
             "workspace_id": {
                 "description": "Workspace ID",
+                "type": "string"
+            },
+            "region": {
+                "default": "cn-beijing",
+                "description": "Volcengine region (e.g., cn-beijing, cn-shanghai, cn-guangzhou)",
                 "type": "string"
             }
         },
@@ -137,6 +147,11 @@ Input:
             "name": {
                 "description": "Query cluster name for filtering",
                 "type": "string"
+            },
+            "region": {
+                "default": "cn-beijing",
+                "description": "Volcengine region (e.g., cn-beijing, cn-shanghai, cn-guangzhou)",
+                "type": "string"
             }
         },
         "required": []
@@ -171,6 +186,11 @@ Input:
         "properties": {
             "cluster_id": {
                 "description": "Query cluster ID",
+                "type": "string"
+            },
+            "region": {
+                "default": "cn-beijing",
+                "description": "Volcengine region (e.g., cn-beijing, cn-shanghai, cn-guangzhou)",
                 "type": "string"
             }
         },
@@ -224,6 +244,11 @@ Input:
                 "default": true,
                 "description": "Whether to only show rules created by current user",
                 "type": "boolean"
+            },
+            "region": {
+                "default": "cn-beijing",
+                "description": "Volcengine region (e.g., cn-beijing, cn-shanghai, cn-guangzhou)",
+                "type": "string"
             }
         },
         "required": [
@@ -269,6 +294,11 @@ Input:
             },
             "epoch": {
                 "description": "Timestamp precision (s/ms/us/ns)",
+                "type": "string"
+            },
+            "region": {
+                "default": "cn-beijing",
+                "description": "Volcengine region (e.g., cn-beijing, cn-shanghai, cn-guangzhou)",
                 "type": "string"
             }
         },
@@ -322,6 +352,11 @@ Input:
             "end": {
                 "default": "now",
                 "description": "Query end time",
+                "type": "string"
+            },
+            "region": {
+                "default": "cn-beijing",
+                "description": "Volcengine region (e.g., cn-beijing, cn-shanghai, cn-guangzhou)",
                 "type": "string"
             }
         },
@@ -378,8 +413,8 @@ API Key ([Signature Mechanism](https://www.volcengine.com/docs/6731/942192))
 | ------------------------- | ----------------------------- | ------------- | ----------------------------------------------------------------------- |
 | VOLCENGINE_ACCESS_KEY     | Volcengine Account ACCESS KEY | -             | [Volcengine Access Console](https://console.volcengine.com/iam/keymanage/) |
 | VOLCENGINE_SECRET_KEY     | Volcengine Account SECRET KEY | -             | [Volcengine Access Console](https://console.volcengine.com/iam/keymanage/) |
-| VOLCENGINE_REGION         | Volcengine Region             | -             | [Volcengine Access Console](https://console.volcengine.com/iam/keymanage/) Target region(e.g. cn-beijing, cn-shanghai, cn-guangzhou) |
-| METRICS_WORKSPACE_NAME    | Default Workspace Name        | -             | Optional, used as default workspace for list_preagg, influx_query, metrics_query methods |
+| VOLCENGINE_REGION         | Volcengine Region             | cn-beijing    | Target region(e.g. cn-beijing, cn-shanghai, cn-guangzhou)               |
+| METRICS_WORKSPACE_NAME    | Default Workspace Name        | -             | Optional, used as default workspace for metrics query methods           |
 
 ### Deployment
 

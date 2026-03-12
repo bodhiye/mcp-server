@@ -4,7 +4,7 @@ import argparse
 import logging
 import sys
 
-from mcp_server_metrics.server import mcp
+from mcp_server_metrics.server import init_server
 
 
 def main():
@@ -30,7 +30,7 @@ def main():
     parser.add_argument(
         "--host",
         "-H",
-        default="127.0.0.1",
+        default="0.0.0.0",
         help="Host to use for streamable-http transport",
     )
     parser.add_argument(
@@ -54,6 +54,8 @@ def main():
     logger.info(f"Starting Metrics MCP Server with {args.transport} transport")
 
     try:
+        # Initialize server with configuration
+        mcp = init_server(port=args.port, host=args.host)
         mcp.run(transport=args.transport)
     except Exception as e:
         logger.error(f"Failed to start server: {e}")
